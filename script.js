@@ -13,8 +13,8 @@ $(document).ready(function () {
   var wind = $("#wind");
   var image = $("img");
 
-  // on button Show Weather fire a function to fetch data from server
-  showWeatherButton.click(function () {
+  // showWeather function to fetch data from server with AJAX call
+  function showWeather() {
     var searchCity = input.val().trim();
     var http = new XMLHttpRequest();
     var apiKey = "a528ec267b2491fa8cac3f544e842cb3";
@@ -45,5 +45,15 @@ $(document).ready(function () {
       }
     };
     http.send();
+  }
+
+  // on button click fire a showWeather function
+  showWeatherButton.click(showWeather);
+  // search on press Enter
+  input.keyup(function (e) {
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      showWeather();
+    }
   });
 });
